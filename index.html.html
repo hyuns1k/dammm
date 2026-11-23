@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>간호학과 1학년 포트폴리오</title>
+  <style>
+    :root {
+      --primary: #B85042;
+      --primary-dark: #963E32;
+      --secondary: #E7E8D1;
+      --bg-light: #FAF9F6;
+      --text-main: #2C2C2C;
+      --text-muted: #5A5A5A;
+      --white: #FFFFFF;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+      line-height: 1.6;
+      color: var(--text-main);
+      background-color: var(--bg-light);
+      word-break: keep-all;
+    }
+
+    /* 1. 헤더 (Header) */
+    header {
+      background-color: var(--primary);
+      color: var(--white);
+      text-align: center;
+      padding: 5rem 1.5rem;
+    }
+
+    header .badge {
+      display: inline-block;
+      background-color: var(--secondary);
+      color: var(--primary);
+      font-weight: bold;
+      font-size: 0.9rem;
+      padding: 0.35rem 1rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+
+    header h1 {
+      font-size: 2.4rem;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.5px;
+    }
+
+    header p {
+      font-size: 1.15rem;
+      color: var(--secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* 공통 섹션 스타일 */
+    section {
+      padding: 4.5rem 1.5rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 1.8rem;
+      text-align: center;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 3px;
+      background-color: var(--primary);
+      margin: 0.6rem auto 0;
+      border-radius: 2px;
+    }
+
+    /* 2. 소개 (About) */
+    .about-box {
+      background-color: var(--white);
+      border-left: 5px solid var(--primary);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    /* 3. 프로젝트 갤러리 (Projects) */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .project-card {
+      background-color: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      border: 1px solid #EAEAEA;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .project-img-wrap {
+      width: 100%;
+      height: 220px;
+      background-color: var(--secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      color: var(--primary);
+      font-weight: bold;
+      padding: 0.5rem;
+    }
+
+    .project-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* 작품 전체가 잘리지 않게 표시 */
+    }
+
+    .project-media-wrap {
+      width: 100%;
+      background-color: var(--secondary);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 220px;
+      gap: 0.75rem;
+    }
+
+    .project-media-wrap video {
+      width: 100%;
+      max-height: 180px;
+      border-radius: 6px;
+      background-color: #000;
+    }
+
+    .play-btn {
+      background-color: var(--primary);
+      color: var(--white);
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .play-btn:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .project-content {
+      padding: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .project-tag {
+      display: inline-block;
+      background-color: var(--secondary);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: bold;
+      padding: 0.2rem 0.65rem;
+      border-radius: 4px;
+      margin-bottom: 0.6rem;
+    }
+
+    .project-content h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.6rem;
+      color: var(--text-main);
+    }
+
+    .project-content p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    /* 4. 스킬 (Skills) */
+    .skills-container {
+      background-color: var(--secondary);
+      padding: 3rem 1.5rem;
+      border-radius: 16px;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .skill-item {
+      background-color: var(--white);
+      color: var(--primary);
+      font-weight: bold;
+      padding: 0.7rem 1.3rem;
+      border-radius: 30px;
+      border: 1.5px solid var(--primary);
+      font-size: 0.95rem;
+    }
+
+    /* 5. 연락처 (Contact) */
+    .contact-box {
+      text-align: center;
+      background-color: var(--white);
+      padding: 2.5rem 1.5rem;
+      border-radius: 12px;
+      border: 1px solid #EAEAEA;
+    }
+
+    .contact-box p {
+      margin-bottom: 1.5rem;
+      color: var(--text-muted);
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--primary);
+      color: var(--white);
+      text-decoration: none;
+      padding: 0.8rem 1.6rem;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background-color 0.2s;
+    }
+
+    .btn:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--secondary);
+    }
+
+    /* 5. 연락처 & 푸터 통합 (Contact & Footer) */
+    footer.contact-footer {
+      background-color: var(--primary);
+      color: var(--white);
+      text-align: center;
+      padding: 4rem 1.5rem 3rem;
+      border-top-left-radius: 24px;
+      border-top-right-radius: 24px;
+      margin-top: 3rem;
+    }
+
+    footer.contact-footer h2 {
+      color: var(--white);
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    footer.contact-footer h2::after {
+      display: none;
+    }
+
+    footer.contact-footer .contact-subtitle {
+      font-size: 1.05rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+    }
+
+    footer.contact-footer .contact-info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      font-size: 1.05rem;
+      font-weight: bold;
+      margin-bottom: 2.5rem;
+    }
+
+    footer.contact-footer .contact-info-list a {
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    footer.contact-footer .contact-info-list a:hover {
+      text-decoration: underline;
+    }
+
+    footer.contact-footer .ai-notice {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.92);
+      margin-bottom: 2.5rem;
+    }
+
+    footer.contact-footer .copyright {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    /* 모바일 반응형 조정 */
+    @media (max-width: 600px) {
+      header {
+        padding: 3.5rem 1rem;
+      }
+      header h1 {
+        font-size: 1.9rem;
+      }
+      section {
+        padding: 3rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. 헤더 -->
+  <header>
+    <span class="badge">혜전대학교 간호학과 1학년 포트폴리오</span>
+    <h1>최현식</h1>
+    <p>이해와 소통으로 미래 간호를 그리는 예비 간호사입니다.</p>
+  </header>
+
+  <!-- 2. 소개 -->
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="about-box" style="text-align: left; max-width: 720px; margin: 0 auto;">
+      <p style="margin-bottom: 0.6rem;"><strong>이름:</strong> 최현식</p>
+      <p style="margin-bottom: 1rem;"><strong>학과:</strong> 간호학과</p>
+      <p><strong>이번 학기 느낀 점:</strong><br>'AI의 창의적 활용' 교양 수업을 통해 다양한 AI 도구들을 직접 경험하고 활용해 보았습니다. 배움의 과정이 즐겁고 행복했으며, 유익한 시간이었습니다. 앞으로도 이 수업이 오래도록 기억에 남을 것 같습니다.</p>
+    </div>
+  </section>
+
+  <!-- 3. 프로젝트 갤러리 -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-grid">
+      
+      <!-- 프로젝트 1 (이미지: work1.png) -->
+      <article class="project-card">
+        <div class="project-img-wrap">
+          <img src="images/work1.png" alt="간호학과 홍보 포스터" onerror="this.style.display='none'; this.parentElement.textContent='images/work1.png';">
+        </div>
+        <div class="project-content">
+          <span class="project-tag">6주차, ChatGPT, 미리캔버스</span>
+          <h3>간호학과 홍보 포스터</h3>
+          <p>혜전대학교 간호학과 신입생 모집 안내 홍보 포스터</p>
+        </div>
+      </article>
+
+      <!-- 프로젝트 2 (이미지: work2.png) -->
+      <article class="project-card">
+        <div class="project-img-wrap">
+          <img src="images/work2.png" alt="명함" onerror="this.style.display='none'; this.parentElement.textContent='images/work2.png';">
+        </div>
+        <div class="project-content">
+          <span class="project-tag">7주차, gemini</span>
+          <h3>명함</h3>
+          <p>혜전대학교 간호학과 예비 간호사 브랜딩 명함 디자인</p>
+        </div>
+      </article>
+
+      <!-- 프로젝트 3 (영상: promo.mp4) -->
+      <article class="project-card">
+        <div class="project-media-wrap">
+          <video id="promoVideo" controls preload="metadata"
+                 onplay="document.getElementById('promoPlayBtn').textContent='⏸ 일시정지';"
+                 onpause="document.getElementById('promoPlayBtn').textContent='▶ 영상 재생';"
+                 onended="document.getElementById('promoPlayBtn').textContent='▶ 영상 재생';">
+            <source src="images/promo.mp4" type="video/mp4">
+            브라우저가 비디오 재생을 지원하지 않습니다.
+          </video>
+          <button type="button" id="promoPlayBtn" class="play-btn" onclick="togglePromoVideo()">▶ 영상 재생</button>
+        </div>
+        <div class="project-content">
+          <span class="project-tag">AI 홍보영상</span>
+          <h3>심부정맥혈전증 의심 신호 안내</h3>
+          <p>종아리 붓기와 통증 등 심부정맥혈전증(DVT)의 위험 신호와 대처법을 알리는 건강 정보 숏폼 영상</p>
+        </div>
+      </article>
+
+      <!-- 프로젝트 4 (팟캐스트: podcast.mp4 - 오디오 재생 막대만 표시) -->
+      <article class="project-card">
+        <div class="project-media-wrap">
+          <audio controls controlsList="nodownload" preload="metadata" style="width: 100%;">
+            <source src="images/podcast.mp4" type="video/mp4">
+            브라우저가 오디오 재생을 지원하지 않습니다.
+          </audio>
+        </div>
+        <div class="project-content">
+          <span class="project-tag">AI 팟캐스트</span>
+          <h3>응급간호 팟캐스트: 심폐소생술(CPR)</h3>
+          <p>심정지 환자 발견 시 반응 확인부터 가슴압박, 자동심장충격기(AED) 사용법까지 정리한 오디오 콘텐츠</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- 4. 스킬 -->
+  <section id="skills">
+    <div class="skills-container">
+      <h2>Skills</h2>
+      <div class="skill-list">
+        <span class="skill-item">생성형 AI 이미지 제작 (포스터)</span>
+        <span class="skill-item">AI 영상 편집 및 더빙 (홍보영상)</span>
+        <span class="skill-item">AI 오디오 제작 (팟캐스트)</span>
+        <span class="skill-item">미리캔버스 시각 자료 디자인</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. 연락처 & 푸터 통합 -->
+  <footer id="contact" class="contact-footer">
+    <h2>Contact</h2>
+    <p class="contact-subtitle">소통과 협업을 환영합니다!</p>
+    <div class="contact-info-list">
+      <p>✉️ Email: <a href="mailto:hyunsik5922@gmail.com">hyunsik5922@gmail.com</a></p>
+      <p>📱 Instagram: <a href="https://instagram.com/v_xiv.hsc" target="_blank" rel="noopener noreferrer">@v_xiv.hsc</a></p>
+    </div>
+    <p class="ai-notice">💡 이 사이트의 글과 작품은 AI 도구의 도움으로 만들고 직접 다듬었습니다.</p>
+    <p class="copyright">© 2026 CHOIHYUNSIK. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // 비디오 비동기 재생(Promise) 충돌 및 AbortError 방지 함수
+    function togglePromoVideo() {
+      const video = document.getElementById('promoVideo');
+      if (!video) return;
+
+      if (video.paused || video.ended) {
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(function (error) {
+            // 재생 도중 pause()가 호출되어 발생하는 AbortError는 정상 동작이므로 무시
+            if (error.name !== 'AbortError') {
+              console.warn('비디오 재생 중 오류:', error);
+            }
+          });
+        }
+      } else {
+        video.pause();
+      }
+    }
+  </script>
+
+</body>
+</html>
